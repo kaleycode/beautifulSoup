@@ -1,22 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
-from selenium import webdriver
 
-driver = webdriver.Chrome()
-
-driver.get("https://www.goodreads.com/work/quotes/7492217-the-complete-sherlock-holmes")
-elem = driver.find_element(By.NAME, "q")
-
-soup = BeautifulSoup(response.text, 'html.parser')
-
-print(response.status_code)
-
-'''for quote in quotes:
-    print(quote.text) '''
-
-
-
-#quotes = soup.find_all("div", attrs={"class" : "quoteText"})
-#print(quotes)
-
-#div class = "quoteText"
+url = "https://bookroo.com/quotes/sherlock-holmes"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+quotes = soup.find_all('div', class_ = 'text-lg md:text-xl leading-[1.8] whitespace-pre-wrap break-words mb-4')
+for quote in quotes:
+    print(quote.text)
+    print()
+    print()
